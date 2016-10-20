@@ -1,0 +1,428 @@
+<!doctype html>
+
+<head>
+	<title>Brother2Brother</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			height: 100%;
+			width: 100%;
+		}
+		.content{
+			height: 100%;
+			width: 100%;
+			max-height: 1000px;
+			min-width: 500px;
+			overflow: auto;
+			background-color: #969696;
+		}
+		header {
+			height: 10%;
+			width: 100%;
+		}
+		#main {
+			height: 75%;
+			width: 100%;
+		}
+		#menubar {
+			text-align: center;
+			display: block;
+			background-color: #000066;
+			height: 100%;
+			line-height: 3.5em;
+			width: 100%;
+			margin: 0;
+			vertical-align: middle;
+			position: relative;
+		}
+		#menubar li {
+				text-decoration: none;
+				display: inline;
+				margin: 2em;
+				vertical-align: middle;
+			}
+				a {
+					color: white;
+					text-decoration: none;
+				}
+		.infotab {
+			display: none;
+			width: 80%;
+			min-height: 400px;
+			text-align: center;
+			margin: 20px auto;
+			font-size: 20px;
+		}
+		#hometab {
+			display: block;
+		}
+		#leftpanel{
+			height: 100%;
+			width: 50%;
+			min-width: 500px;
+			background-color: #e5e5e5;
+			float: left;
+			text-align: center;
+			overflow-x: auto;
+			overflow-y: hidden;
+			border-right: 1px solid #000066;
+		}
+		#profilephoto {
+			width: 25%;
+			height: 25%;
+			margin: 10px auto;
+			background-color: black;
+		}
+		#newsfeed {
+			width: 100%;
+			height: 100%;
+			margin: 15px auto;
+			background-color: black;
+			overflow: auto;
+			color: white;
+		}
+		.sidemenu {
+			width: 25%;
+			height: 100%;
+			background-color: gray;
+			position: fixed;
+			transform: translateX(-90%);
+			transition: transform 0.6s ease;
+		}
+		.sidemenu.open {
+			transform: translateX(0);
+			
+		}
+		.profile {
+			width: 50%;
+			height: 100%;
+			background-color: #545454;
+			position: fixed;
+			transform: translateX(-100%);
+			transition: transform 0.6s ease;
+		}
+		.profile.open {
+			transform: translateX(0);
+		}
+		.infobox {
+			width: 40%;
+			height: 20%;
+			background-color: #e5e5e5;
+			float: left;
+			margin: 5%;
+		}
+		.resume {
+			width: 50%;
+			height: 100%;
+			position: fixed;
+			transform: translateX(-100%);
+			transition: transform 0.6s ease;
+			background-color: #545454;
+		}
+		.resume.open {
+			transform: translateX(0);
+		}
+		.events {
+			width: 50%;
+			height: 100%;
+			position: fixed;
+			transform: translateX(-100%);
+			transition: transform 0.6s ease;
+			background-color: #545454;
+		}
+		.events.open {
+			transform: translateX(0);
+		}
+		#menuheader {
+			width: 100%
+			height: 10%;
+			text-align: right;
+		}
+		.nav-toggle {
+			cursor: pointer;
+		}
+		#menucontent {
+			width: 100%;
+			height: 90%;
+		}
+		.menubutton {
+			font-size: 20px;
+			width: 90%
+			height: 30%;
+			border: 1px solid black;
+			padding: 10px 0px;
+			color: white;
+		}
+		.menubutton:hover {
+			color: red;
+			cursor: pointer;
+		}
+		#rightpanel {
+			height: 100%;
+			width: 49.9%;
+			min-width: 500px;
+			float: left;
+			overflow: auto;
+			background-color: #545454;
+			text-align: center;
+		}
+		#sectionheader {
+			width: 100%;
+			height: 10%;
+			background-color: black;
+			color: white;
+			text-align: center;
+			overflow: auto;
+			min-width: 500px;
+		}
+		#sectionheader h1 {
+			margin: 5px auto;
+			}
+			
+		.student {
+			width: 30%;
+			height: 30%;
+			background-color: black;
+			margin: 10%;
+			float: left;
+			color: white;
+		}
+		.student:hover {
+			cursor: pointer;
+			opacity: 0.5;
+		}
+		.studentphoto {
+			width: 50%;
+			height: 30%;
+			margin: 5% auto;
+		}
+		.studentname {
+			width: 100%;
+			text-align: center;
+			margin-bottom: 5%;
+		}
+		.profile-toggle {
+			cursor: pointer;
+		}
+		.studentprofile {
+			width: 50%;
+			height: 100%;
+			position: fixed;
+			background-color: #545454;
+			transform: translateX(100%);
+			transition: transform 0.6s ease;
+		}
+		.studentprofile.open {
+			transform: translateX(0);
+		}
+		footer {
+			clear: both;
+			position: absolute;
+			height: 15%;
+			width: 100%;
+			background-color: #000066;
+			bottom: 0;
+		}
+			
+		
+	</style>
+	<script>
+		function hometab() {
+			document.getElementById("hometab").style.display = "block";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function aboutUs() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "block";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function reviews() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "block";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function FAQs() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "block";
+		}
+		function signupbox() {
+			document.getElementById("modal").style.display = "block";
+		}
+		function signupform() {
+			document.getElementById("loginform").style.display = "none";
+			document.getElementById("signupform").style.display = "block";
+		}
+		function loginform() {
+			document.getElementById("signupform").style.display = "none";
+			document.getElementById("loginform").style.display = "block";
+		}
+		function closemodal() {
+			document.getElementById("modal").style.display = "none";
+			document.getElementById("signupform").style.display = "none";
+			document.getElementById("loginform").style.display = "none";
+			
+			document.getElementById("signupform").reset();
+			document.getElementById("loginform").reset();
+		}
+		$(function() {
+			$('.nav-toggle').on('click', function() {
+				$('.sidemenu').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('#profilebutton').on('click', function() {
+				$('.profile').toggleClass('open');
+				$('.sidemenu').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('#resumebutton').on('click', function() {
+				$('.resume').toggleClass('open');
+				$('.sidemenu').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('#eventsbutton').on('click', function() {
+				$('.events').toggleClass('open');
+				$('.sidemenu').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('.student').on('click', function() {
+				$('.studentprofile').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('.profile-toggle').on('click', function() {
+				$('.studentprofile').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('.selfprofile-toggle').on('click', function() {
+				$('.profile').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('.resume-toggle').on('click', function() {
+				$('.resume').toggleClass('open');
+			});
+		});
+		$(function() {
+			$('.event-toggle').on('click', function() {
+				$('.events').toggleClass('open');
+			});
+		});
+	</script>
+	
+</head>
+
+<body>
+	<div class="content">
+		<header id="header">
+			<div id="menubar">
+				<li>
+					<a>[B2B Logo]</a>
+				</li>
+			</div>
+		</header>
+		<div id="main">
+			<div id="leftpanel">
+				<div class="profile">
+					<h2 class="selfprofile-toggle"> < </h2>
+					<div id="profilephoto">
+						<img src="photos/default_avatar.jpg" height="100%" width="100%">
+					</div>
+					<h1>[Mentor/Student Name]</h1>
+					<div class="infobox">
+						About:
+					</div>
+					<div class="infobox">
+						Education:
+					</div>
+				</div>
+				<div class="resume">
+					<h2 class="resume-toggle"> < </h2>
+					this is the resume page.
+				</div>
+				<div class="events">
+					<h2 class="event-toggle"> < </h2>
+					this is the events page.
+				</div>
+				<div class="sidemenu">
+					<div id="menuheader">
+						<h2 class="nav-toggle">X</h2>
+					</div>
+					<div id="menucontent">
+							<ul>
+								<li><div class="menubutton" id="profilebutton">Profile</div></li>
+								<li><div class="menubutton" id="resumebutton">Resume</div></li>
+								<li><div class="menubutton" id="eventsbutton">To-Do List</div></li>
+							</ul>
+					</div>
+					
+				</div>
+				<div id="profilephoto">
+					<img src="photos/default_avatar.jpg" height="100%" width="100%">
+				</div>
+				<h1>[Mentor Name]</h1>
+				<div id="newsfeed">
+					<h3>New Feed: </h3>
+				</div>
+			</div>
+			
+			
+			<div id="rightpanel">
+				<div class="studentprofile">
+					<h1 class="profile-toggle"> < </h1>
+					<div id="profilephoto">
+						<img src="photos/default_avatar.jpg" height="100%" width="100%">
+					</div>
+					<h1>[Mentor/Student Name]</h1>
+					<div class="infobox">
+						About:
+					</div>
+					<div class="infobox">
+						Education:
+					</div>
+				</div>
+				<div id="sectionheader">
+					<h1 style="vertical-align: middle;">Mentor/Student(s): </h1>
+				</div>
+				<div id="studentcontent">
+					<div class="student">
+						<div class="studentphoto">
+							<img src="photos/default_avatar.jpg" height="100%" width="100%">
+						</div>
+						<div class="studentname">
+							<h4>[Student Name]</h4>
+						</div>
+					</div>
+					<div class="student">
+						<div class="studentphoto">
+							<img src="photos/default_avatar.jpg" height="100%" width="100%">
+						</div>
+						<div class="studentname">
+							<h4>[Student Name]</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<footer>
+			Shaquille Hall & Daras Johnson
+		</footer>
+	</div>
+</body>

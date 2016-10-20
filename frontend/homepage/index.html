@@ -1,0 +1,313 @@
+<!doctype html>
+
+<head>
+	<title>Brother2Brother</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			height: 100%;
+		}
+		.content{
+			min-height: 80%;
+			height: 100%;
+			overflow-x: hidden;
+			background-color: #969696;
+		}
+		#menubar {
+			text-align: center;
+			display: block;
+			background-color: #000066;
+			color: white;
+			height: 3.5em;
+			line-height: 3.5em;
+			width: 100%;
+			margin: 0;
+			vertical-align: middle;
+			position: relative;
+		}
+			li {
+				text-decoration: none;
+				display: inline;
+				margin: 2em;
+				vertical-align: middle;
+			}
+				a {
+					color: white;
+					text-decoration: none;
+				}
+		.infotab {
+			display: none;
+			width: 80%;
+			min-height: 400px;
+			text-align: center;
+			margin: 20px auto;
+			font-size: 20px;
+		}
+		#hometab {
+			display: block;
+		}
+		.hometabphoto {
+			float: left;
+			width: 30%;
+			height: auto;
+			overflow: hidden;
+			margin: 10px;
+		}
+		.main_cap {
+			clear: both;
+		}
+		.sectionheader {
+			margin: 30px auto;
+		}
+		#modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0,0,0,0.8);
+		}
+		.modal-content {
+			position: relative;
+			margin: auto;
+			padding: 0;
+			background-color: #969696;
+			border: 1px solid black;
+			width: 80%;
+			max-width: 400px;
+			border-radius: 20px;
+			height: 400px;
+		}
+		.modal-header{
+			width: 100%;
+			height: 10%;
+			background-color: #D3D3D3;
+			border-top-right-radius: 20px;
+			border-top-left-radius: 20px;
+		}
+		.headerbutton {
+			width: 30%;
+			height: 100%;
+			float: left;
+			vertical-align: middle;
+			margin-top: 5px;
+			margin-left: 10px;
+			text-align: center;
+		}
+		#close {
+			width: 20px;
+			height: 100%;
+			float: right;
+			margin-right: 10px;
+		}
+		.forms {
+			clear: both;
+			width: 80%;
+			margin: auto;
+			font-size: 20px;
+			display: none;
+		}
+		footer {
+			position: absolute;
+			height: 15%;
+			width: 100%;
+			background-color: #000066;
+			bottom: 0;
+			color: white;
+		}
+			
+		
+	</style>
+	<script>
+		function hometab() {
+			document.getElementById("hometab").style.display = "block";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function aboutUs() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "block";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function reviews() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "block";
+			document.getElementById("FAQs").style.display = "none";
+		}
+		function FAQs() {
+			document.getElementById("hometab").style.display = "none";
+			document.getElementById("aboutUs").style.display = "none";
+			document.getElementById("reviews").style.display = "none";
+			document.getElementById("FAQs").style.display = "block";
+		}
+		function signupbox() {
+			document.getElementById("modal").style.display = "block";
+		}
+		function signupform() {
+			document.getElementById("loginform").style.display = "none";
+			document.getElementById("signupform").style.display = "block";
+		}
+		function loginform() {
+			document.getElementById("signupform").style.display = "none";
+			document.getElementById("loginform").style.display = "block";
+		}
+		function closemodal() {
+			document.getElementById("modal").style.display = "none";
+			document.getElementById("signupform").style.display = "none";
+			document.getElementById("loginform").style.display = "none";
+			
+			document.getElementById("signupform").reset();
+			document.getElementById("loginform").reset();
+		}
+	</script>
+	
+</head>
+
+<body>
+	<div class="content">
+		<header id="header">
+			<div id="menubar">
+				<li>
+					<a onclick="hometab()">[B2B Logo]</a>
+				</li>
+				<li>
+					<a onclick="aboutUs()">About Us</a>
+				</li>
+				<li>
+					<a onclick="reviews()">Reviews</a>
+				</li>
+				<li>
+					<a onclick="FAQs()">FAQs</a>
+				</li>
+				<li>
+					<a onclick="signupbox()">Sign Up/Login</a>
+				</li>
+			</div>
+		</header>
+		<div id="main">
+			<section class="infotab" id="hometab">
+				<div class="hometabphoto">
+					<img src="photos/mentor1.jpg">
+				</div>
+				<div class="hometabphoto">
+					<img src="photos/mentor2.jpg" height="250px">
+				</div>
+				<div class="hometabphoto">
+					<img src="photos/mentor3.jpeg">
+				</div>
+				<div class="main_cap"><h1>Online Mentoring Application</h1><div>
+			</section>
+			<section class="infotab" id="aboutUs">
+				<h1 class="sectionHeader">About Us</h1><br><br>
+				<p>The impact of mentorship on an individual's 
+				success is well documented. Research has also shown 
+				that self-efficacy is one of the biggest determining 
+				factors of goal completion. </p><br/>
+				<p>We exist because we believe that, especially for 
+				young black and brown boys, access to mentorship and 
+				networking opportunities with men who look like them or 
+				have shared experiences is necessary but severely lacking. 
+				In addition, black boys have consistently been socialized to 
+				limit their view of potential career paths in which they can 
+				find success. Therefore, our objectives include:</p><br/>
+				<ul>
+					<li>
+						Facilitating a safe, structured virtual environment 
+						for male minority students and professionals of all 
+						levels to engage one other 
+					</li><br/>
+					<li>
+						Increasing self-efficacy within young black males 
+						through increased increased interaction with and 
+						awareness of successful black men. 
+					</li><br/>
+					<li>
+						Providing exposure to a broad range of career paths.
+					</li><br/>
+					<li>
+						Serving as centralized portal for employment/internship 
+						opportunities, scholarships and grants specifically 
+						targeted to benefit black men.
+					</li><br/>
+				<ul>
+			</section>
+			<section class="infotab" id="reviews">
+				<h1 class="sectionHeader">Reviews</h1>
+				<p>This is the reviews section.</p>
+			</section>
+			<section class="infotab" id="FAQs">
+				<h1 class="sectionHeader">FAQs</h1>
+				<p>This is the FAQs section.</p>
+			</section>
+			<div id="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="headerbutton" onclick="signupform()"><h2>Sign Up</h2></div>
+						<h2 class="headerbutton" onclick="loginform()">Login</h2>
+						<div id="close" onclick="closemodal()"><h2>X</h2></div>
+					</div>
+					<form class="forms" id="signupform">
+							<p class="formLine">
+								<label>First name:</label> 
+								<input id="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Last name:</label> 
+								<input class="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Email:</label> 
+								<input class="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Date of Birth:</label>
+								<input class="inputfield" type="text" maxlength="2" size="2">/
+								<input class="inputfield" type="text" maxlength="2" size="2">/
+								<input class="inputfield" type="text"  maxlength="4" size="4">
+							</p>
+							<p class="formLine">
+								<label>Field of Interest:</label>
+								<input type="radio" name="foi" value="Computer Science" checked> Computer Science<br>
+							</p>
+							<p class="formLine">
+								<label>Password:</label> 
+								<input class="inputfield" type="password">
+							</p>
+							<p class="formLine">
+								<label>Confirm Password:</label> 
+								<input class="inputfield" type="password">
+							</p>
+							<button>Submit</button><button>Cancel</button>
+					</form>
+					<form class="forms" id="loginform">
+						<p class="formLine">
+							<label>Email:</label> 
+							<input class="inputfield" type="text">
+						</p>
+						<p class="formLine">
+							<label>Password:</label> 
+							<input class="inputfield" type="password">
+						</p>
+						<div><button>Login</button><button>Cancel</button>
+					</form>
+				</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			Shaquille Hall & Daras Johnson
+		</footer>
+	</div>
+</body>
