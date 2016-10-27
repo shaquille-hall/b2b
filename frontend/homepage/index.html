@@ -4,7 +4,6 @@
 	<title>Brother2Brother</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<style>
 		*{
 			margin: 0;
@@ -23,291 +22,144 @@
 			background-color: #969696;
 			position: fixed;
 		}
-		header {
-			height: 10%;
+		#header {
+			height: 15%;
 			width: 100%;
-		}
-		#main {
-			height: 75%;
-			width: 100%;
+			background-color: yellow;
+			position: absolute;
+			top: 0;
 		}
 		#menubar {
 			text-align: center;
 			display: block;
 			background-color: #000066;
+			color: white;
 			height: 100%;
 			line-height: 3.5em;
 			width: 100%;
 			margin: 0;
 			vertical-align: middle;
-			position: relative;
 		}
-		#menubar li {
-				text-decoration: none;
-				display: inline;
-				margin: 2em;
-				vertical-align: middle;
-				cursor: pointer;
-			}
-		#menubar a {
+		li {
 			text-decoration: none;
+			display: inline;
+			margin: 2em;
+			vertical-align: middle;
 		}
-		.logout {
-			float: right;
-			margin-right: 5%;
+		a {
 			color: white;
-		}
-		.logout:hover {
-			color: red;
+			text-decoration: none;
 			cursor: pointer;
+		}
+		#main {
+			position: absolute;
+			height: 70%;
+			width: 100%;
+			top: 15%;
+			background-color: #969696;
+			
 		}
 		.infotab {
 			display: none;
-			width: 80%;
-			min-height: 400px;
+			width: 100%;
+			height: 100%;
 			text-align: center;
 			margin: 20px auto;
 			font-size: 20px;
+			background-color: #969696;
+			position: absolute;
+			overflow: auto;
 		}
 		#hometab {
 			display: block;
 		}
-		#leftpanel{
-			height: 100%;
-			width: 50%;
-			min-width: 500px;
-			background-color: #e5e5e5;
+		.hometabphoto {
 			float: left;
-			text-align: center;
-			overflow-x: auto;
-			overflow-y: hidden;
-			border-right: 1px solid #000066;
+			width: 30%;
+			height: auto;
+			overflow: hidden;
+			margin: 10px;
 		}
-		#profilephoto {
-			width: 25%;
-			height: 25%;
-			margin: 10px auto;
-			background-color: black;
-		}
-		.newsfeedheader {
-			width: 100%;
-			height: 10%;
-			background-color: black;
-		}
-		.updates {
-			width: 100%;
-			height: 90%;
-			position: relative;
-			overflow: auto;
-		}
-		.update {
-			width: 100%;
-			height: 10%;
-			border: 3px solid black;
-			border-radius: 10px;
-			background-color: #e5e5e5;
-			
-		}
-		#newsfeed {
-			width: 100%;
-			height: 100%;
-			margin: 15px auto;
-			background-color: #545454;
-			overflow: auto;
-			color: white;
-		}
-		.sidemenu {
-			width: 25%;
-			height: 100%;
-			background-color: gray;
-			position: fixed;
-			transform: translateX(-100%);
-			transition: transform 0.6s ease;
-		}
-		.sidemenu.open {
-			transform: translateX(0);
-			
-		}
-		.profile {
-			width: 50%;
-			height: 100%;
-			background-color: #545454;
-			position: fixed;
-			transform: translateX(-100%);
-			transition: transform 0.6s ease;
-		}
-		.profile.open {
-			transform: translateX(0);
-		}
-		.infoboxes {
-			clear: both;
-			width: 100%;
-			height: 30%;
-		}
-		.infobox {
-			width: 40%;
-			height: 50%;
-			background-color: #e5e5e5;
-			float: left;
-			margin: 0% 5%;
-			border-radius: 0px 0px 25px 25px;
-			top: 0px;
-		}
-		.infoboxheaders {
-			height: 5%;
-			width: 100%;
-			color: white;
-			font-size: 20px;
+		.slideshow-container {
+			height: 40%;
+ 			width: 50%;
+  			position: relative;
+  			margin: auto;
 		}
 		
-		.infoboxheader {
-			width: 40%;
+		
+		
+		
+		.main_cap {
+			clear: both;
+		}
+		.sectionheader {
+			margin: 30px auto;
+		}
+		.aboutustext {
+			width: 80%;
+			margin: 3% auto 0 auto;
+		}
+		#modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0,0,0,0.8);
+		}
+		.modal-content {
+			position: relative;
+			margin: auto;
+			padding: 0;
+			background-color: #969696;
+			border: 1px solid black;
+			width: 80%;
+			max-width: 400px;
+			border-radius: 20px;
+			height: 400px;
+		}
+		.modal-header{
+			width: 100%;
+			height: 10%;
+			background-color: #D3D3D3;
+			border-top-right-radius: 20px;
+			border-top-left-radius: 20px;
+		}
+		.headerbutton {
+			width: 30%;
 			height: 100%;
 			float: left;
-			border-radius: 25px 25px 0px 0px;
-			background-color: #000066;
-			margin: 0% 5%;
-		}
-		.selfprofile-toggle, .profile-toggle, .resume-toggle, .event-toggle {
-			height: 5%;
-			width: 5%;
+			vertical-align: middle;
+			margin-top: 5px;
+			margin-left: 10px;
+			text-align: center;
 			cursor: pointer;
-			margin: 2% 0% 5% 2%;
 		}
-		.resume {
-			width: 50%;
+		#close {
+			width: 20px;
 			height: 100%;
-			position: fixed;
-			transform: translateX(-100%);
-			transition: transform 0.6s ease;
-			background-color: #545454;
+			float: right;
+			margin-right: 10px;
 		}
-		.resume a {
-			text-decoration: underline;
-			color: white;
-			cursor: pointer;
-		}
-		.resume a:hover {
-			color: #000066;
-		}
-		.resume.open {
-			transform: translateX(0);
-		}
-		.fileupload {
-			width: 100%;
-			height: 15%;
-			background-color: white;
+		.forms {
+			clear: both;
+			width: 80%;
+			margin: auto;
+			font-size: 20px;
 			display: none;
 		}
-		.events {
-			width: 50%;
-			height: 100%;
-			position: fixed;
-			transform: translateX(-100%);
-			transition: transform 0.6s ease;
-			background-color: #545454;
-		}
-		.events.open {
-			transform: translateX(0);
-		}
-		table {
-    		border-collapse: collapse;
-   			width: 100%;
-		}
-		#menuheader {
-			width: 100%
-			height: 10%;
-			text-align: right;
-		}
-		.nav-toggle {
-			cursor: pointer;
-			height: 10%;
-			width: 10%;
-			float: left;
-		}
-		#menucontent {
-			width: 100%;
-			height: 90%;
-		}
-		.menubutton {
-			font-size: 20px;
-			width: 90%
-			height: 30%;
-			border: 1px solid black;
-			padding: 10px 0px;
-			color: white;
-		}
-		.menubutton:hover {
-			color: red;
-			cursor: pointer;
-		}
-		#rightpanel {
-			height: 100%;
-			width: 49.9%;
-			min-width: 500px;
-			float: left;
-			overflow: auto;
-			background-color: #545454;
-			text-align: center;
-		}
-		#sectionheader {
-			width: 100%;
-			height: 10%;
-			background-color: black;
-			color: white;
-			text-align: center;
-			overflow: auto;
-			min-width: 500px;
-		}
-		#sectionheader h1 {
-			margin: 5px auto;
-			}
-			
-		.student {
-			width: 25%;
-			height: 30%;
-			background-color: white;
-			margin: 10%;
-			float: left;
-			color: #000066;
-			border: 1px solid black;
-			border-radius: 10px;
-		}
-		.student:hover {
-			cursor: pointer;
-			opacity: 0.5;
-		}
-		.studentphoto {
-			width: 50%;
-			height: 30%;
-			margin: 5% auto;
-		}
-		.studentname {
-			width: 100%;
-			text-align: center;
-			margin-bottom: 5%;
-		}
-		.profile-toggle {
-			cursor: pointer;
-		}
-		.studentprofile {
-			width: 50%;
-			height: 100%;
-			position: fixed;
-			background-color: #545454;
-			transform: translateX(100%);
-			transition: transform 0.6s ease;
-		}
-		.studentprofile.open {
-			transform: translateX(0);
-		}
 		footer {
-			clear: both;
 			position: absolute;
 			height: 15%;
 			width: 100%;
 			background-color: #000066;
 			bottom: 0;
+			color: white;
 		}
 			
 		
@@ -356,243 +208,186 @@
 			document.getElementById("signupform").reset();
 			document.getElementById("loginform").reset();
 		}
-		$(function() {
-			$('.nav-toggle').on('click', function() {
-				$('.sidemenu').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('#profilebutton').on('click', function() {
-				$('.profile').toggleClass('open');
-				$('.sidemenu').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('#resumebutton').on('click', function() {
-				$('.resume').toggleClass('open');
-				$('.sidemenu').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('#eventsbutton').on('click', function() {
-				$('.events').toggleClass('open');
-				$('.sidemenu').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('.student').on('click', function() {
-				$('.studentprofile').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('.profile-toggle').on('click', function() {
-				$('.studentprofile').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('.selfprofile-toggle').on('click', function() {
-				$('.profile').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('.resume-toggle').on('click', function() {
-				$('.resume').toggleClass('open');
-			});
-		});
-		$(function() {
-			$('.event-toggle').on('click', function() {
-				$('.events').toggleClass('open');
-			});
-		});
-		$(function() {
-			$("#upload").click(function() {
-				$(".fileupload").toggle();
-			});
-		});
 	</script>
 	
 </head>
 
 <body>
 	<div class="content">
-		<header id="header">
+		<div id="header">
 			<div id="menubar">
 				<li>
-					<a>[B2B Logo]</a>
+					<a onclick="hometab()">[B2B Logo]</a>
 				</li>
-				<div class="logout">
-					<a>Log Out</a>
-				</div>
+				<li>
+					<a onclick="aboutUs()">About Us</a>
+				</li>
+				<li>
+					<a onclick="reviews()">Reviews</a>
+				</li>
+				<li>
+					<a onclick="FAQs()">FAQs</a>
+				</li>
+				<li>
+					<a onclick="signupbox()">Sign Up/Login</a>
+				</li>
 			</div>
-		</header>
+		</div>
 		<div id="main">
-			<div id="leftpanel">
-				<div class="profile">
-					<div class="selfprofile-toggle">
-						<img src="photos/backbutton.png" height="100%" width="100%">
-						Back
-					</div>
-					<div id="profilephoto">
-						<img src="photos/default_avatar.jpg" height="100%" width="100%">
-					</div>
-					<h1>[Mentor/Student Name]</h1>
-					
-					<div class="infoboxheaders">	
-						<div class="infoboxheader">
-							About:
-						</div>
-					
-					
-						<div class="infoboxheader">
-							Education:
-						</div>
-					</div>
-					<div class="infoboxes">
-						<div class="infobox">
-						</div>
-						<div class="infobox">
-					
-						</div>
-					</div>
+			<section class="infotab" id="hometab">
+				<div class="main_cap">
+					<h1>Online Mentoring Application</h1>
 				</div>
+				<!--<div class="hometabphoto">
+					<img src="photos/mentor1.jpg">
+				</div>
+				<div class="hometabphoto">
+					<img src="photos/mentor2.jpg" height="250px">
+				</div>
+				<div class="hometabphoto">
+					<img src="photos/mentor3.jpeg">
+				</div>-->
 				
-				<div class="resume">
-					<div class="resume-toggle">
-						<img src="photos/backbutton.png" height="100%" width="100%">
-						Back
+				<div class="slideshow-container">
+					<div class="mySlides fade">
+					  <img src="photos/mentor1.jpg" style="width:100%">
 					</div>
-					<div id="upload"><a>Upload Resume</a></div><br><br>
-					<div class="fileupload">
-						To upload your resume to Brother2Brother:<br><br>
-						<input type="file" id="resume">
-						<br><br>Note: If your resume is already uploaded, then uploading another
-						will replace the current one. 
+
+					<div class="mySlides fade">
+					  <img src="photos/mentor2.jpg" style="width:100%">
 					</div>
-					<br><br><div><a>View Resume</a></div>
+
+					<div class="mySlides fade">
+					  <img src="photos/mentor3.jpeg" style="width:100%">
+					</div>
+					<br>
+
+					<div style="text-align:center">
+					  <span class="dot"></span>
+					  <span class="dot"></span>
+					  <span class="dot"></span>
+					</div>
+
+					<script>
+					var slideIndex = 0;
+					showSlides();
+
+					function showSlides() {
+						var i;
+						var slides = document.getElementsByClassName("mySlides");
+						var dots = document.getElementsByClassName("dot");
+						for (i = 0; i < slides.length; i++) {
+						   slides[i].style.display = "none";
+						}
+						slideIndex++;
+						if (slideIndex> slides.length) {slideIndex = 1}
+						for (i = 0; i < dots.length; i++) {
+							dots[i].className = dots[i].className.replace(" active", "");
+						}
+						slides[slideIndex-1].style.display = "block";
+						dots[slideIndex-1].className += " active";
+						setTimeout(showSlides, 2000); // Change image every 2 seconds
+					}
+					</script>
+			</section>
+			<section class="infotab" id="aboutUs">
+				<h1 class="sectionHeader">About Us</h1><br><br>
+				<div class="aboutustext">
+					<p>The impact of mentorship on an individual's 
+					success is well documented. Research has also shown 
+					that self-efficacy is one of the biggest determining 
+					factors of goal completion. </p><br/>
+					<p>We exist because we believe that, especially for 
+					young black and brown boys, access to mentorship and 
+					networking opportunities with men who look like them or 
+					have shared experiences is necessary but severely lacking. 
+					In addition, black boys have consistently been socialized to 
+					limit their view of potential career paths in which they can 
+					find success. Therefore, our objectives include:</p><br/>
 				</div>
-				<div class="events">
-					<div class="event-toggle">
-						<img src="photos/backbutton.png" height="100%" width="100%">
-						Back
+				<ul>
+					<li>
+						Facilitating a safe, structured virtual environment 
+						for male minority students and professionals of all 
+						levels to engage one other 
+					</li><br/>
+					<li>
+						Increasing self-efficacy within young black males 
+						through increased increased interaction with and 
+						awareness of successful black men. 
+					</li><br/>
+					<li>
+						Providing exposure to a broad range of career paths.
+					</li><br/>
+					<li>
+						Serving as centralized portal for employment/internship 
+						opportunities, scholarships and grants specifically 
+						targeted to benefit black men.
+					</li><br/>
+				<ul>
+			</section>
+			<section class="infotab" id="reviews">
+				<h1 class="sectionHeader">Reviews</h1>
+				<p>This is the reviews section.</p>
+			</section>
+			<section class="infotab" id="FAQs">
+				<h1 class="sectionHeader">FAQs</h1>
+				<p>This is the FAQs section.</p>
+			</section>
+			<div id="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="headerbutton" onclick="signupform()"><h2>Sign Up</h2></div>
+						<h2 class="headerbutton" onclick="loginform()">Login</h2>
+						<div id="close" onclick="closemodal()"><h2>X</h2></div>
 					</div>
-					<br><h3>Here's a list of your events for today: </h3><br>
-					<table>
-						<tr>
-							<th>Time:</th>
-							<th>Event:</th>
-							<th>Attending:</th>
-							<th>Location:</th>
-						</tr>
-						<tr>
-							<td>00:00am</td>
-							<td>Title of the Event</td>
-							<td>Who's all attending</td>
-							<td>Where is the event?</td>
-						</tr>
-					</table>
-					<br><br><h3>Here are some upcoming events: </h3><br>
-					<table>
-						<tr>
-							<th>Time:</th>
-							<th>Event:</th>
-							<th>Attending:</th>
-							<th>Location:</th>
-						</tr>
-						<tr>
-							<td>00:00am</td>
-							<td>Title of the Event</td>
-							<td>Who's all attending</td>
-							<td>Where is the event?</td>
-						</tr>
-					</table>
+					<form class="forms" id="signupform">
+							<p class="formLine">
+								<label>First name:</label> 
+								<input id="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Last name:</label> 
+								<input class="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Email:</label> 
+								<input class="inputfield" type="text">
+							</p>
+							<p class="formLine">
+								<label>Date of Birth:</label>
+								<input class="inputfield" type="text" maxlength="2" size="2">/
+								<input class="inputfield" type="text" maxlength="2" size="2">/
+								<input class="inputfield" type="text"  maxlength="4" size="4">
+							</p>
+							<p class="formLine">
+								<label>Field of Interest:</label>
+								<input type="radio" name="foi" value="Computer Science" checked> Computer Science<br>
+							</p>
+							<p class="formLine">
+								<label>Password:</label> 
+								<input class="inputfield" type="password">
+							</p>
+							<p class="formLine">
+								<label>Confirm Password:</label> 
+								<input class="inputfield" type="password">
+							</p>
+							<button>Submit</button><button>Cancel</button>
+					</form>
+					<form class="forms" id="loginform">
+						<p class="formLine">
+							<label>Email:</label> 
+							<input class="inputfield" type="text">
+						</p>
+						<p class="formLine">
+							<label>Password:</label> 
+							<input class="inputfield" type="password">
+						</p>
+						<div><button>Login</button><button>Cancel</button>
+					</form>
 				</div>
-				
-				<div class="nav-toggle">
-					<img src="photos/menubutton.png" height="100%" width="100%">
-					Menu
-				</div>
-				
-				<div class="sidemenu">
-					<div id="menuheader">
-					</div>
-					<div id="menucontent">
-							<ul>
-								<li><div class="menubutton" id="profilebutton">Profile</div></li>
-								<li><div class="menubutton" id="resumebutton">Resume</div></li>
-								<li><div class="menubutton" id="eventsbutton">To-Do List</div></li>
-								<li><div class="menubutton" id="eventsbutton">Settings</div></li>
-							</ul>
-					</div>
-					
-				</div>
-				<div id="profilephoto">
-					<img src="photos/default_avatar.jpg" height="100%" width="100%">
-				</div>
-				<h1>[Mentor Name]</h1>
-				<div id="newsfeed">
-					<div class="newsfeedheader">
-						<h3>New Feed: </h3>
-					</div>
-					<!--<div class="updates">
-						<div class="update">
-							This is a news feed update!
-						</div>
-						<div class="update">
-							This is a news feed update!
-						</div>
-					</div>-->
 				</div>
 			</div>
-			
-			
-			<div id="rightpanel">
-				<div class="studentprofile">
-					<div class="profile-toggle">
-						<img src="photos/backbutton2.png" height="100%" width="100%">
-						Back
-					</div>
-					<div id="profilephoto">
-						<img src="photos/default_avatar.jpg" height="100%" width="100%">
-					</div>
-					<h1>[Mentor/Student Name]</h1>
-					<div class="infoboxheaders">
-						<div class="infoboxheader">
-							About:
-						</div>
-						<div class="infoboxheader">
-							Education:
-						</div>
-					</div>
-					<div class="infoboxes">
-						<div class="infobox">
-						</div>
-						<div class="infobox">
-						</div>
-					</div>
-				</div>
-				<div id="sectionheader">
-					<h1 style="vertical-align: middle;">Mentor/Student(s): </h1>
-				</div>
-				<div id="studentcontent">
-					<div class="student">
-						<div class="studentphoto">
-							<img src="photos/default_avatar.jpg" height="100%" width="100%">
-						</div>
-						<div class="studentname">
-							<h4>[Student Name]</h4>
-						</div>
-					</div>
-					<div class="student">
-						<div class="studentphoto">
-							<img src="photos/default_avatar.jpg" height="100%" width="100%">
-						</div>
-						<div class="studentname">
-							<h4>[Student Name]</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-			
 		</div>
 		<footer>
 			Shaquille Hall & Daras Johnson
