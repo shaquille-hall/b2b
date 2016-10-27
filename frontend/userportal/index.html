@@ -18,9 +18,10 @@
 			height: 100%;
 			width: 100%;
 			max-height: 1000px;
-			min-width: 500px;
+			min-width: 700px;
 			overflow: auto;
 			background-color: #969696;
+			position: fixed;
 		}
 		header {
 			height: 10%;
@@ -46,11 +47,20 @@
 				display: inline;
 				margin: 2em;
 				vertical-align: middle;
+				cursor: pointer;
 			}
-				a {
-					color: white;
-					text-decoration: none;
-				}
+		#menubar a {
+			text-decoration: none;
+		}
+		.logout {
+			float: right;
+			margin-right: 5%;
+			color: white;
+		}
+		.logout:hover {
+			color: red;
+			cursor: pointer;
+		}
 		.infotab {
 			display: none;
 			width: 80%;
@@ -79,11 +89,30 @@
 			margin: 10px auto;
 			background-color: black;
 		}
+		.newsfeedheader {
+			width: 100%;
+			height: 10%;
+			background-color: black;
+		}
+		.updates {
+			width: 100%;
+			height: 90%;
+			position: relative;
+			overflow: auto;
+		}
+		.update {
+			width: 100%;
+			height: 10%;
+			border: 3px solid black;
+			border-radius: 10px;
+			background-color: #e5e5e5;
+			
+		}
 		#newsfeed {
 			width: 100%;
 			height: 100%;
 			margin: 15px auto;
-			background-color: black;
+			background-color: #545454;
 			overflow: auto;
 			color: white;
 		}
@@ -92,7 +121,7 @@
 			height: 100%;
 			background-color: gray;
 			position: fixed;
-			transform: translateX(-90%);
+			transform: translateX(-100%);
 			transition: transform 0.6s ease;
 		}
 		.sidemenu.open {
@@ -110,12 +139,40 @@
 		.profile.open {
 			transform: translateX(0);
 		}
+		.infoboxes {
+			clear: both;
+			width: 100%;
+			height: 30%;
+		}
 		.infobox {
 			width: 40%;
-			height: 20%;
+			height: 50%;
 			background-color: #e5e5e5;
 			float: left;
-			margin: 5%;
+			margin: 0% 5%;
+			border-radius: 0px 0px 25px 25px;
+			top: 0px;
+		}
+		.infoboxheaders {
+			height: 5%;
+			width: 100%;
+			color: white;
+			font-size: 20px;
+		}
+		
+		.infoboxheader {
+			width: 40%;
+			height: 100%;
+			float: left;
+			border-radius: 25px 25px 0px 0px;
+			background-color: #000066;
+			margin: 0% 5%;
+		}
+		.selfprofile-toggle, .profile-toggle, .resume-toggle, .event-toggle {
+			height: 5%;
+			width: 5%;
+			cursor: pointer;
+			margin: 2% 0% 5% 2%;
 		}
 		.resume {
 			width: 50%;
@@ -125,8 +182,22 @@
 			transition: transform 0.6s ease;
 			background-color: #545454;
 		}
+		.resume a {
+			text-decoration: underline;
+			color: white;
+			cursor: pointer;
+		}
+		.resume a:hover {
+			color: #000066;
+		}
 		.resume.open {
 			transform: translateX(0);
+		}
+		.fileupload {
+			width: 100%;
+			height: 15%;
+			background-color: white;
+			display: none;
 		}
 		.events {
 			width: 50%;
@@ -139,6 +210,10 @@
 		.events.open {
 			transform: translateX(0);
 		}
+		table {
+    		border-collapse: collapse;
+   			width: 100%;
+		}
 		#menuheader {
 			width: 100%
 			height: 10%;
@@ -146,6 +221,9 @@
 		}
 		.nav-toggle {
 			cursor: pointer;
+			height: 10%;
+			width: 10%;
+			float: left;
 		}
 		#menucontent {
 			width: 100%;
@@ -186,12 +264,14 @@
 			}
 			
 		.student {
-			width: 30%;
+			width: 25%;
 			height: 30%;
-			background-color: black;
+			background-color: white;
 			margin: 10%;
 			float: left;
-			color: white;
+			color: #000066;
+			border: 1px solid black;
+			border-radius: 10px;
 		}
 		.student:hover {
 			cursor: pointer;
@@ -324,6 +404,11 @@
 				$('.events').toggleClass('open');
 			});
 		});
+		$(function() {
+			$("#upload").click(function() {
+				$(".fileupload").toggle();
+			});
+		});
 	</script>
 	
 </head>
@@ -335,40 +420,107 @@
 				<li>
 					<a>[B2B Logo]</a>
 				</li>
+				<div class="logout">
+					<a>Log Out</a>
+				</div>
 			</div>
 		</header>
 		<div id="main">
 			<div id="leftpanel">
 				<div class="profile">
-					<h2 class="selfprofile-toggle"> < </h2>
+					<div class="selfprofile-toggle">
+						<img src="photos/backbutton.png" height="100%" width="100%">
+						Back
+					</div>
 					<div id="profilephoto">
 						<img src="photos/default_avatar.jpg" height="100%" width="100%">
 					</div>
 					<h1>[Mentor/Student Name]</h1>
-					<div class="infobox">
-						About:
+					
+					<div class="infoboxheaders">	
+						<div class="infoboxheader">
+							About:
+						</div>
+					
+					
+						<div class="infoboxheader">
+							Education:
+						</div>
 					</div>
-					<div class="infobox">
-						Education:
+					<div class="infoboxes">
+						<div class="infobox">
+						</div>
+						<div class="infobox">
+					
+						</div>
 					</div>
 				</div>
+				
 				<div class="resume">
-					<h2 class="resume-toggle"> < </h2>
-					this is the resume page.
+					<div class="resume-toggle">
+						<img src="photos/backbutton.png" height="100%" width="100%">
+						Back
+					</div>
+					<div id="upload"><a>Upload Resume</a></div><br><br>
+					<div class="fileupload">
+						To upload your resume to Brother2Brother:<br><br>
+						<input type="file" id="resume">
+						<br><br>Note: If your resume is already uploaded, then uploading another
+						will replace the current one. 
+					</div>
+					<br><br><div><a>View Resume</a></div>
 				</div>
 				<div class="events">
-					<h2 class="event-toggle"> < </h2>
-					this is the events page.
+					<div class="event-toggle">
+						<img src="photos/backbutton.png" height="100%" width="100%">
+						Back
+					</div>
+					<br><h3>Here's a list of your events for today: </h3><br>
+					<table>
+						<tr>
+							<th>Time:</th>
+							<th>Event:</th>
+							<th>Attending:</th>
+							<th>Location:</th>
+						</tr>
+						<tr>
+							<td>00:00am</td>
+							<td>Title of the Event</td>
+							<td>Who's all attending</td>
+							<td>Where is the event?</td>
+						</tr>
+					</table>
+					<br><br><h3>Here are some upcoming events: </h3><br>
+					<table>
+						<tr>
+							<th>Time:</th>
+							<th>Event:</th>
+							<th>Attending:</th>
+							<th>Location:</th>
+						</tr>
+						<tr>
+							<td>00:00am</td>
+							<td>Title of the Event</td>
+							<td>Who's all attending</td>
+							<td>Where is the event?</td>
+						</tr>
+					</table>
 				</div>
+				
+				<div class="nav-toggle">
+					<img src="photos/menubutton.png" height="100%" width="100%">
+					Menu
+				</div>
+				
 				<div class="sidemenu">
 					<div id="menuheader">
-						<h2 class="nav-toggle">X</h2>
 					</div>
 					<div id="menucontent">
 							<ul>
 								<li><div class="menubutton" id="profilebutton">Profile</div></li>
 								<li><div class="menubutton" id="resumebutton">Resume</div></li>
 								<li><div class="menubutton" id="eventsbutton">To-Do List</div></li>
+								<li><div class="menubutton" id="eventsbutton">Settings</div></li>
 							</ul>
 					</div>
 					
@@ -378,23 +530,44 @@
 				</div>
 				<h1>[Mentor Name]</h1>
 				<div id="newsfeed">
-					<h3>New Feed: </h3>
+					<div class="newsfeedheader">
+						<h3>New Feed: </h3>
+					</div>
+					<!--<div class="updates">
+						<div class="update">
+							This is a news feed update!
+						</div>
+						<div class="update">
+							This is a news feed update!
+						</div>
+					</div>-->
 				</div>
 			</div>
 			
 			
 			<div id="rightpanel">
 				<div class="studentprofile">
-					<h1 class="profile-toggle"> < </h1>
+					<div class="profile-toggle">
+						<img src="photos/backbutton2.png" height="100%" width="100%">
+						Back
+					</div>
 					<div id="profilephoto">
 						<img src="photos/default_avatar.jpg" height="100%" width="100%">
 					</div>
 					<h1>[Mentor/Student Name]</h1>
-					<div class="infobox">
-						About:
+					<div class="infoboxheaders">
+						<div class="infoboxheader">
+							About:
+						</div>
+						<div class="infoboxheader">
+							Education:
+						</div>
 					</div>
-					<div class="infobox">
-						Education:
+					<div class="infoboxes">
+						<div class="infobox">
+						</div>
+						<div class="infobox">
+						</div>
 					</div>
 				</div>
 				<div id="sectionheader">
